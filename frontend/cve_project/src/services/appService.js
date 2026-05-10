@@ -64,3 +64,47 @@ export const fetchCVEsByModifiedDays = async (days, page = 1, limit = 10) => {
     throw error;
   }
 };
+
+// CREATE: Add a new CVE
+export const createCVE = async (cveData) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/cves`, cveData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating CVE:', error);
+    throw error;
+  }
+};
+
+// UPDATE: Replace entire CVE record (PUT)
+export const updateCVE = async (id, cveData) => {
+  try {
+    const response = await axios.put(`${API_URL}/api/cves/${id}`, cveData);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating CVE:', error);
+    throw error;
+  }
+};
+
+// PATCH: Partial update to CVE record
+export const patchCVE = async (id, cveData) => {
+  try {
+    const response = await axios.patch(`${API_URL}/api/cves/${id}`, cveData);
+    return response.data;
+  } catch (error) {
+    console.error('Error patching CVE:', error);
+    throw error;
+  }
+};
+
+// DELETE: Remove a CVE record
+export const deleteCVE = async (id) => {
+  try {
+    const response = await axios.delete(`${API_URL}/api/cves/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting CVE:', error);
+    throw error;
+  }
+};
